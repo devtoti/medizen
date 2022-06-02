@@ -1,47 +1,55 @@
-import "./styles.css";
-import MediaPlayer from "./MediaPlayer";
-import Navigation from "./Navigation";
-import MenuIcon from '@mui/icons-material/Menu';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';import GitHubIcon from '@mui/icons-material/GitHub';
-import Dialog from "@mui/material/Dialog";
-import { useState } from "react";
+// import "./styles.css";
+// import MediaPlayer from "./MediaPlayer";
+import AppBody from "./Body";
+import AppHeader from './Header'
+import AppFooter from './Footer'
+import { useState } from 'react'
+// import MenuIcon from '@mui/icons-material/Menu';
+// import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';import GitHubIcon from '@mui/icons-material/GitHub';
+// import Dialog from "@mui/material/Dialog";
+// import { useState } from "react";
 
 export default function App() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [openDialog, setOpenDialog] = useState(false);
+ 
 
+
+  // const [openDialog, setOpenDialog] = useState(false);
+  const [timer, setTimer] = useState(6);
   return (
     <div className="App">
-      <div
-        onClick={() => setOpenDialog(true)}
-        style={{ position: "absolute", top: "1ch", right: "1ch", zIndex: 1 }}
-      >
-        <MenuIcon />
+      <AppHeader />
+        {/* <AppBody data="success" isPlaying={isPlaying} /> */}
+        <AppBody timer={timer}/>
+        <AppFooter timer={timer} setTimer={setTimer}/>
+        <div class="background--custom"></div>
       </div>
-      <Dialog open={openDialog}>
-        <div className="media-player dialog">
-          <button type="button" name="close-btn" onClick={()=> setOpenDialog(false)}>&times;</button>
-          <h2>Medizen.app was made in React</h2>
-          <ul>
-            <li >EXAMPLE</li>
-          </ul>
-
-          <h4>Contact</h4>
-          <p>Antonio Ruiz</p>
-          <div className="contact-icons">
-
-          <GitHubIcon />
-          <AlternateEmailIcon />
-          </div>
-        </div>
-      </Dialog>
-      <div className="medizen-app">
-        <h1>Medizen</h1>
-        <h2>Relax to the max</h2>
-        <Navigation data="success" isPlaying={isPlaying} />
-        <MediaPlayer setIsPlaying={setIsPlaying} isPlaying={isPlaying} />
-      </div>
-      <div class="background--custom"></div>
-    </div>
   );
 }
+
+{/* <div
+  onClick={() => setOpenDialog(true)}
+  style={{ position: "absolute", top: "1ch", right: "1ch", zIndex: 1 }}
+>
+  <div> */}
+
+
+      // <Dialog open={openDialog}>
+      //   <div className="media-player dialog">
+      //     <button type="button" name="close-btn" onClick={()=> setOpenDialog(false)}>&times;</button>
+      //     <h2>Medizen.app was made in React</h2>
+      //     <ul>
+      //       <li >EXAMPLE</li>
+      //     </ul>
+      
+      //     <h4>Contact</h4>
+      //     <p>Antonio Ruiz</p>
+      //     <div className="contact-icons">
+      //     <a href="https://github.com/devtoti">
+      //     <GitHubIcon />
+      //       </a> 
+      //     <a href="mailto:toti.webdev@gmail.com">
+      //     <AlternateEmailIcon />
+      //     </a>
+      //     </div>
+      //   </div>
+      // </Dialog>

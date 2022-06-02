@@ -2,38 +2,35 @@ import { useState, useEffect } from "react";
 import useSound from "use-sound";
 import gong from "./components/audios/gong-start.mp3";
 import pop from "./components/audios/pop.mp3";
-
 import Fab from "@mui/material/Fab";
-
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 import PauseCircleFilledIcon from "@mui/icons-material/PauseCircleFilled";
 import Forward30Icon from "@mui/icons-material/Forward30";
 import Replay30Icon from "@mui/icons-material/Replay30";
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 
-export default function MediaPlayer({ isPlaying, setIsPlaying }) {
-  const [timer, setTimer] = useState(50);
-  // const [isPlaying, setIsPlaying] = useState(false);
-  const [playGong, { stop }] = useSound(gong, { volume: 0.2 });
-  const [playPop] = useSound(pop, { volume: 0.2 });
+export default function MediaPlayer({ isPlaying, setIsPlaying, timer, setTimer }) {
 
-  let seconds = Math.floor((timer / 1) % 60);
-  let minutes = Math.floor((timer / 1 / 60) % 60);
-  let hours = Math.floor((timer / (1 * 60 * 60)) % 24);
+  const [playGong, { stop }] = useSound(gong, { volume: 0.5 });
+  const [playPop] = useSound(pop, { volume: 0.5 });
 
-  function zPadFormat(num, places) {
-    const zNum = num.toString().length;
-    if (zNum <= 1) {
-      return "0" + num;
-    } else {
-      return num;
-    }
-  }
+  // let seconds = Math.floor((timer) % 60);
+  // let minutes = Math.floor((timer / 60) % 60);
+  // let hours = Math.floor((timer / (60 * 60)) % 24);
 
-  useEffect(() => {
-    console.log(isNaN(timer));
-    console.log(seconds, minutes, hours);
-  }, [timer]);
+  // function zPadFormat(num) {
+  //   const zNum = num.toString().length;
+  //   if (zNum <= 1) {
+  //     return "0" + num;
+  //   } else {
+  //     return num;
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   console.log(isNaN(timer));
+  //   console.log(seconds, minutes, hours);
+  // }, [timer]);
 
   useEffect(() => {
     if (isPlaying && timer > 0) {
@@ -90,13 +87,6 @@ export default function MediaPlayer({ isPlaying, setIsPlaying }) {
 
   return (
     <div className="media-player">
-      <h2 className={isPlaying ? "display-playing" : "display-paused"}>
-        {zPadFormat(hours) +
-          ":" +
-          zPadFormat(minutes) +
-          ":" +
-          zPadFormat(seconds)}
-      </h2>
       <form>
         <select defaultValue="Select meditation time" onChange={handleChange}>
           <option defaultValue="0">Select meditation time</option>
@@ -144,14 +134,14 @@ export default function MediaPlayer({ isPlaying, setIsPlaying }) {
         </Fab>
       </div>
       {timer > 0 && (
-          <Fab
+        <Fab
           name="reset"
           type="button"
           onClick={handleClick}
           className="btn-time-nav"
-          >
+        >
           <SettingsBackupRestoreIcon />
-          </Fab>
+        </Fab>
       )}
     </div>
   );

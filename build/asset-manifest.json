@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/medizen/static/css/main.6699b949.css",
+    "main.js": "/medizen/static/js/main.fb3b98b8.js",
+    "static/js/845.100b1bc0.chunk.js": "/medizen/static/js/845.100b1bc0.chunk.js",
+    "static/media/gong-start.mp3": "/medizen/static/media/gong-start.6308c00fd6f078728a17.mp3",
+    "static/media/pop.mp3": "/medizen/static/media/pop.95aa5fc0c3a56f12c772.mp3",
+    "static/media/medizen-logo.svg": "/medizen/static/media/medizen-logo.3aad3f91df02a72b1736442c543b394b.svg",
+    "index.html": "/medizen/index.html",
+    "main.6699b949.css.map": "/medizen/static/css/main.6699b949.css.map",
+    "main.fb3b98b8.js.map": "/medizen/static/js/main.fb3b98b8.js.map",
+    "845.100b1bc0.chunk.js.map": "/medizen/static/js/845.100b1bc0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6699b949.css",
+    "static/js/main.fb3b98b8.js"
+  ]
+}
