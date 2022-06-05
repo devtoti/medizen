@@ -3,7 +3,7 @@
 import AppBody from "./Body";
 import AppHeader from './Header'
 import AppFooter from './Footer'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // import MenuIcon from '@mui/icons-material/Menu';
 // import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';import GitHubIcon from '@mui/icons-material/GitHub';
 // import Dialog from "@mui/material/Dialog";
@@ -12,9 +12,12 @@ import { useState } from 'react'
 export default function App() {
  
 
+  const [timer, setTimer] = useState(3);
 
-  // const [openDialog, setOpenDialog] = useState(false);
-  const [timer, setTimer] = useState(6);
+// useEffect(() => {
+//   console.log(`timer is now ${timer/60}min`)
+// }, [timer])
+
   return (
     <div className="App">
       <AppHeader />

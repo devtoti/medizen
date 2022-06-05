@@ -7,6 +7,28 @@
   font-family: "Quicksand", sans-serif;
 }
 
+:root {
+  --light100: hsla(356, 56%, 90%, 1);
+  --light200: hsla(356, 55%, 82%, 1);
+  --light300: hsla(356, 54%, 77%, 1);
+  --light400: hsla(356, 64%, 73%, 1);
+  --light500: hsla(356, 76%, 72%, 1);
+  --light600: hsla(356, 66%, 65%, 1);
+  --light700: hsla(356, 46%, 55%, 1);
+  --light800: hsla(357, 36%, 45%, 1);
+  --light900: hsla(357, 30%, 37%, 1);
+
+  --dark100: hsla(216, 11%, 86%, 1);
+  --dark200: hsla(217, 20%, 76%, 1);
+  --dark300: hsla(216, 27%, 70%, 1);
+  --dark400: hsla(216, 28%, 64%, 1);
+  --dark500: hsla(216, 23%, 57%, 1);
+  --dark600: hsla(215, 29%, 45%, 1);
+  --dark700: hsla(216, 20%, 38%, 1);
+  --dark800: hsla(215, 21%, 30%, 1);
+  --dark900: hsla(216, 15%, 27%, 1);
+}
+
 html {
   height: 100%;
   display: grid;
@@ -24,9 +46,11 @@ html {
 .app-header {
   background-color: hsl(70, 50%, 90%);
 }
+
 .app-body {
   background-color: hsl(44, 71%, 84%);
 }
+
 .app-footer {
   background-color: hsl(18, 42%, 78%);
 }
@@ -36,6 +60,7 @@ html {
   justify-content: space-between;
   padding-top: 1rem;
 }
+
 .fl-row svg {
   width: 36px;
   aspect-ratio: 1/1;
@@ -44,8 +69,9 @@ html {
 
 .fl-row svg:hover {
   cursor: pointer;
-  color:aliceblue;
+  color: aliceblue;
 }
+
 .media-player-controls {
   display: flex;
   flex-direction: row;
@@ -56,14 +82,28 @@ html {
 .audio-settings {
   height: 400px;
   width: 100%;
-  background-color: hsl(60,50%,80%);
+  background-color: hsl(60, 50%, 80%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 2rem;
 }
 
-.audio-settings input {
-  width: 80%;
+.audio-settings input,
+svg {
+  width: 100%;
+  padding: 1rem 0rem;
+}
+
+.audio-settings>div {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.audio-settings i * {
+  height: 24px;
+  width: 24px;
+  padding-right: 1rem;
 }
 
 button svg {
@@ -84,12 +124,14 @@ select option {
   padding: 3ch 0;
   text-align: center;
 }
+
 .display-paused {
   align-self: center;
   min-width: 100%;
   font-size: clamp(8px, 3em + 1vw, 5em);
   font-weight: 300;
 }
+
 .display-playing {
   font-size: clamp(8px, 3em + 1vw, 5em);
   font-weight: 300;
@@ -106,6 +148,7 @@ select option {
   60% {
     transform: scale(1.1);
   }
+
   100% {
     transform: scale(1);
   }
@@ -113,8 +156,13 @@ select option {
 
 
 @keyframes moveleft {
-  from {transform: translateX(0)}
-  to {transform: translateX(-60%)}
+  from {
+    transform: translateX(0)
+  }
+
+  to {
+    transform: translateX(-60%)
+  }
 }
 
 @media only screen and (min-width: 600px) {
