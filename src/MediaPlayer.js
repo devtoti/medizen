@@ -1,36 +1,46 @@
 import { useState, useEffect, useRef } from "react";
-import Fab from "@mui/material/Fab";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 import PauseCircleFilledIcon from "@mui/icons-material/PauseCircleFilled";
 import Forward30Icon from "@mui/icons-material/Forward30";
 import Replay30Icon from "@mui/icons-material/Replay30";
+import FastRewindIcon from '@mui/icons-material/FastRewind';
+import FastForwardIcon from '@mui/icons-material/FastForward';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import Dialog from "@mui/material/Dialog";
+import { Howl, Howler } from 'howler';
 
 
-export default function MediaPlayer({ isPlaying, setIsPlaying, timer, setTimer, playGong, playPop, setOpenSettings}) {
+export default function MediaPlayer(props) {
+
+
+  const {
+    isPlaying,
+    setIsPlaying,
+    timer,
+    setTimer,
+    openSettings,
+    audios: { soundAmbient, soundGong, soundPop, endGong } } = props
 
 
   const [openDialog, setOpenDialog] = useState(false)
   const [customMinutes, setCustomMinutes] = useState(0)
   const [customSeconds, setCustomSeconds] = useState(0)
   const [customTime, setCustomTime] = useState(false)
-
-  useEffect(() => {
-    console.log('minutes_', customMinutes)
-    console.log('seconds_', customSeconds)
-  }, [customMinutes, customSeconds])
+  
 
 
   //corre al detonarse isPlaying
   useEffect(() => {
 
     const userTimer = parseFloat(customMinutes) * 60 + parseFloat(customSeconds)
+
+    // console.log(id1)
     if (customTime) {
       userTimer > 3600 ? setTimer(3600) : setTimer(userTimer)
     }
     if (isPlaying && timer > 0) {
-      setOpenSettings(false)
+      // setOpenSettings(false)
+
       const currTimer = setInterval(() => {
         setCustomTime(false)
         setTimer((prev) => prev - 1);
@@ -39,14 +49,16 @@ export default function MediaPlayer({ isPlaying, setIsPlaying, timer, setTimer, 
         clearInterval(currTimer);
       };
     } else if (timer == 0 && isPlaying) {
-      playPop()
       setIsPlaying(false);
+      Howler.stop()
+      endGong.play()
     }
-    // console.log('now is_/', customTime)
   }, [isPlaying, timer, handleCustomMinutes, handleCustomSeconds]);
 
   function handleClick(e) {
     const { name } = e.target;
+
+
     switch (name) {
       case "forward":
         setTimer((c) => c + 15);
@@ -59,23 +71,25 @@ export default function MediaPlayer({ isPlaying, setIsPlaying, timer, setTimer, 
           console.log("-30 seconds to timer");
         } else {
           setTimer(0)
+
         }
         break;
 
       case "play":
         setIsPlaying((p) => !p);
         if (!isPlaying && timer > 0) {
-          playGong();
+          soundAmbient.play()
+          soundGong.play()
         } else {
-          stop();
-          playPop();
+          Howler.stop()
         }
-
         break;
 
       case "reset":
         setTimer(0);
         setIsPlaying(false);
+        Howler.stop()
+        soundPop.play()
         break;
     }
   }
@@ -83,7 +97,7 @@ export default function MediaPlayer({ isPlaying, setIsPlaying, timer, setTimer, 
   function handleChange(e) {
     let newTime = parseInt(e.target.value);
     if (isNaN(newTime)) {
-      console.log('custom time')
+      // console.log('custom time')
       setOpenDialog(true)
 
     } else {
@@ -98,6 +112,7 @@ export default function MediaPlayer({ isPlaying, setIsPlaying, timer, setTimer, 
     setCustomTime(true)
     // setCustomTime((prev) => prev + parseFloat(customMinutes))
   }
+
   function handleCustomSeconds(e) {
     setCustomSeconds(e.target.value)
     console.log(customTime)
@@ -105,14 +120,6 @@ export default function MediaPlayer({ isPlaying, setIsPlaying, timer, setTimer, 
     // setCustomTime((prev) => prev + parseFloat(customSeconds))
   }
 
-
-  // function handleCustomTime(e) {
-  // e.preventDefault()
-  // console.log(e)
-  // const customTime = parseFloat(customMinutes) * 60 + parseFloat(customSeconds)
-  // setTimer(customTime)
-  // // setOpenDialog(false)
-  // }
 
   return (
     <div className="media-player">
@@ -125,66 +132,70 @@ export default function MediaPlayer({ isPlaying, setIsPlaying, timer, setTimer, 
           <option value="custom">Custom...</option>
         </select>
       </form>
+
       <Dialog open={openDialog}>
-        <div>
+        <div className="custom-time">
           <form>
-            <label>Minutes: {customMinutes}</label>
+            <h3>Custom meditation time</h3>
+            <label><span>{customMinutes}</span> Minutes</label>
             <input type="range" min="0" max="60" step="1" name="minutes" value={customMinutes} onChange={handleCustomMinutes}></input>
-            <label>Seconds: {customSeconds}</label>
+            <label><span>{customSeconds}</span> Seconds</label>
             <input type="range" min="0" max="60" step="5" name="seconds" value={customSeconds} onChange={handleCustomSeconds}></input>
-            <button type="button" onClick={() => setOpenDialog(false)}>CLOSE</button>
+            <button type="button" onClick={() => setOpenDialog(false)}>OK</button>
           </form>
         </div>
       </Dialog>
       {/* onClick={() => setOpenDialog(false)} */}
 
       <div className="media-player-controls">
-        <Fab
+        <button
           name="backwards"
           type="button"
           onClick={handleClick}
           className="btn-time-nav"
         >
-          <Replay30Icon />
-        </Fab>
+          <FastRewindIcon />
+        </button>
 
         {!isPlaying || timer == 0 ? (
-          <Fab
+          <button
             name="play"
             type="button"
             onClick={handleClick}
             className="btn-play"
           >
             <PlayCircleFilledWhiteIcon />
-          </Fab>
+          </button>
+
         ) : (
-          <Fab
+          <button
             name="play"
             type="button"
             onClick={handleClick}
             className="btn-play"
           >
             <PauseCircleFilledIcon />
-          </Fab>
+          </button>
+
         )}
-        <Fab
+        <button
           name="forward"
           type="button"
           onClick={handleClick}
           className="btn-time-nav"
         >
-          <Forward30Icon onClick={handleClick} />
-        </Fab>
+          <FastForwardIcon onClick={handleClick} />
+        </button>
       </div>
       {timer > 0 && (
-        <Fab
+        <button
           name="reset"
           type="button"
           onClick={handleClick}
           className="btn-time-nav"
         >
           <SettingsBackupRestoreIcon />
-        </Fab>
+        </button>
       )}
     </div>
   );
