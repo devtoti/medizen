@@ -1,0 +1,9 @@
+<svg width="501" height="501" viewBox="0 0 501 501" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="sun-rays" d="M250 502C388.623 502 501 389.623 501 251C501 112.377 388.623 0 250 0C111.377 0 -1 112.377 -1 251C-1 389.623 111.377 502 250 502Z" fill="url(#paint0_linear_72_34)"/>
+<defs>
+<linearGradient id="paint0_linear_72_34" x1="250" y1="0" x2="250" y2="502" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F1EDCD"/>
+<stop offset="1" stop-color="#EE8288" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>
