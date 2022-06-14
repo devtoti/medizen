@@ -13,7 +13,6 @@ export default function AppBody({ timer, isPlaying,random }) {
 
 
 
-  console.log(random)
   function zPadFormat(num) {
     const zNum = num.toString().length;
     if (zNum <= 1) {

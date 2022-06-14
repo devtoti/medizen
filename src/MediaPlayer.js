@@ -8,6 +8,8 @@ import FastForwardIcon from '@mui/icons-material/FastForward';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import Dialog from "@mui/material/Dialog";
 import { Howl, Howler } from 'howler';
+import { VolumeUpIcon, AdjustmentsIcon } from '@heroicons/react/outline'
+import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 
 
 export default function MediaPlayer(props) {
@@ -18,17 +20,21 @@ export default function MediaPlayer(props) {
     setIsPlaying,
     timer,
     setTimer,
-    openSettings,
+    setOpenSettings,
     audios: { soundAmbient, soundGong, soundPop, endGong } } = props
 
 
   const [openDialog, setOpenDialog] = useState(false)
+  const [mute, setMute] = useState(false)
   const [customMinutes, setCustomMinutes] = useState(0)
   const [customSeconds, setCustomSeconds] = useState(0)
   const [customTime, setCustomTime] = useState(false)
   
 
-
+  function muteAudio() {
+    Howler.stop()
+    setMute((prev) => !prev)
+}
   //corre al detonarse isPlaying
   useEffect(() => {
 
@@ -78,11 +84,17 @@ export default function MediaPlayer(props) {
       case "play":
         setIsPlaying((p) => !p);
         if (!isPlaying && timer > 0) {
-          soundAmbient.play()
+          if (!mute) soundAmbient.play()
           soundGong.play()
-        } else {
-          Howler.stop()
         }
+          break;
+      case "stop":
+        setIsPlaying((p) => !p);
+          soundPop.play().volume(0.5)
+          setTimeout(() => {
+            Howler.stop()
+
+          }, 1000)
         break;
 
       case "reset":
@@ -123,15 +135,24 @@ export default function MediaPlayer(props) {
 
   return (
     <div className="media-player">
+      <div className='app-footer-1 fl-row' >
+       <i id={mute ? "btn-vol-off" : "btn-vol-up"} onClick={muteAudio}>
+                    {mute ? <VolumeOffIcon /> : <VolumeUpIcon/>}
+                </i>
       <form>
         <select defaultValue="10" placeholder="Select meditation time" onChange={handleChange}>
           <option value="0">Select meditation time</option>
           <option value="300">Very short (5 min)</option>
           <option value="900">Short (15 min)</option>
           <option value="1800">Recommended (30 min)</option>
+        
           <option value="custom">Custom...</option>
         </select>
       </form>
+                <i id="btn-vol-up" onClick={(e) => setOpenSettings(a => !a)}>
+                    <AdjustmentsIcon />
+                </i>
+      </div>
 
       <Dialog open={openDialog}>
         <div className="custom-time">
@@ -169,7 +190,7 @@ export default function MediaPlayer(props) {
 
         ) : (
           <button
-            name="play"
+            name="stop"
             type="button"
             onClick={handleClick}
             className="btn-play"

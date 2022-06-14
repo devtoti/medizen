@@ -85,14 +85,14 @@ export default function AppFooter({ timer, setTimer, setIsPlaying, isPlaying }) 
             {openSettings && 
             <AudioSettings 
             audios={audios} />}
-            <div className='app-footer-1 fl-row' >
+            {/* <div className='app-footer-1 fl-row' >
                 <i id={mute ? "btn-vol-off" : "btn-vol-up"} onClick={muteAudio}>
                     {mute ? <VolumeOffIcon /> : <VolumeUpIcon/>}
                 </i>
                 <i id="btn-vol-up" onClick={(e) => setOpenSettings(a => !a)}>
                     <AdjustmentsIcon />
                 </i>
-            </div>
+            </div> */}
             <div className='app-footer-2'>
                 <MediaPlayer
                     setIsPlaying={setIsPlaying} isPlaying={isPlaying}
