@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/medizen/static/css/main.1e162aeb.css",
-    "main.js": "/medizen/static/js/main.d908ce37.js",
+    "main.css": "/medizen/static/css/main.ff4fd3e4.css",
+    "main.js": "/medizen/static/js/main.cb53b101.js",
     "static/media/ambient-rain.mp3": "/medizen/static/media/ambient-rain.53ecc4ef6ffb6606c53a.mp3",
     "static/media/ambient-spring.mp3": "/medizen/static/media/ambient-spring.0b3978b7f900a1015b27.mp3",
     "static/media/ambient-forest.mp3": "/medizen/static/media/ambient-forest.8e84fc1e3b7f307005c1.mp3",
@@ -11,11 +11,11 @@
     "static/media/gong-start.mp3": "/medizen/static/media/gong-start.6308c00fd6f078728a17.mp3",
     "static/media/pop.mp3": "/medizen/static/media/pop.95aa5fc0c3a56f12c772.mp3",
     "index.html": "/medizen/index.html",
-    "main.1e162aeb.css.map": "/medizen/static/css/main.1e162aeb.css.map",
-    "main.d908ce37.js.map": "/medizen/static/js/main.d908ce37.js.map"
+    "main.ff4fd3e4.css.map": "/medizen/static/css/main.ff4fd3e4.css.map",
+    "main.cb53b101.js.map": "/medizen/static/js/main.cb53b101.js.map"
   },
   "entrypoints": [
-    "static/css/main.1e162aeb.css",
-    "static/js/main.d908ce37.js"
+    "static/css/main.ff4fd3e4.css",
+    "static/js/main.cb53b101.js"
   ]
 }
