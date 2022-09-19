@@ -11,7 +11,7 @@ export default function App() {
 const winHeight = window.innerHeight
   const [timer, setTimer] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  // console.log(winHeight)
+
 
   return (
     <div className="App" id={isPlaying ? "active" : "inactive"} style={{height: winHeight}}>

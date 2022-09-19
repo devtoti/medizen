@@ -15,10 +15,7 @@ const quoteData = [
 "quote":"Mediation means dissolving the invisible walls that unaware has built",
 "author":"Sadhguru",
 },
-// {
-// "quote":"A most useful approach to meditation practice is to consider it the most important activity of each day. Schedule it as you would an extremely important appointment, and unfailingly keep your appointment with the infinite",
-// "author":"Roy Eugene Davis",
-// },
+
 {
 "quote":"The act of meditation is being spacious",
 "author":"Sogyal Rinpoche",

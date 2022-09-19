@@ -3,11 +3,6 @@ import { useState, useEffect } from 'react'
 import Dialog from "@mui/material/Dialog";
 import { VolumeUpIcon } from '@heroicons/react/outline'
 
-// import AmbientForest from "./components/audios/ambient-forest.mp3";
-// import AmbientRain from "./components/audios/ambient-rain.mp3";
-// import AmbientSpring from "./components/audios/ambient-spring.mp3";
-
-
 function AudioSettings(props) {
 
 
@@ -28,7 +23,6 @@ function AudioSettings(props) {
     //actualiza el state para los volumenes de los sonidos
     function handleInput(e) {
         const { name, value } = e.target
-        // console.log(value)
         console.log(volumes)
         setVolumes((previous) => {
             return {
@@ -44,9 +38,9 @@ function AudioSettings(props) {
         setAmbientPlaying(false)
         console.log(e.target.value)
         if (e.target.value == undefined) {
-            // setCurrAmbient(AmbientSpring)
+           
         } else {
-            // setCurrAmbient(AmbientSpring)
+            
             soundAmbient.play()
         }
         setOpenDialog(false)
@@ -88,8 +82,6 @@ function AudioSettings(props) {
             </div>
         </>
     })
-
-    // onChange={handleDialog}
     return (
         <div className='audio-settings'>
             {AudioOptions(audioSoundNames, volumes)}
@@ -103,20 +95,10 @@ function AudioSettings(props) {
                     </select>
                 </form>
             </Dialog>
-            {/* <button onClick={handlePlay}>{ambientPlaying ? "STOP" : "PLAY"}</button> */}
+         
             <h3>Coming soon...</h3>
         </div>
     )
 }
 
 export default AudioSettings
-
-
-{/* <label>Starting Gong</label>
-            <input type="range" min="0" max="1" step="0.1" id="starting-gong" name="startGong" value={volumes.startGong} onChange={(e) => handleChange(e)}></input>
-            <label>Middle Gong</label>
-            <input type="range" min="0" max="1" step="0.1" id="middle-gong" name="middleGong" value={volumes.middleGong} onChange={(e) => handleChange(e)}></input>
-            <label>End Gong</label>
-            <input type="range" min="0" max="1" step="0.1" id="end-gong" name="endGong" value={volumes.endGong} onChange={(e) => handleChange(e)}></input>
-            <label onClick={() => setOpenDialog(true)}>Ambient</label>
-            <input type="range" min="0" max="0.5" step="0.05" id="ambient" name="ambient" value={volumes.ambient} onChange={(e) => handleChange(e)}></input> */}

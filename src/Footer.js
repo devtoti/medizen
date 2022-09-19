@@ -29,21 +29,11 @@ export default function AppFooter({ timer, setTimer, setIsPlaying, isPlaying }) 
     })
 
 
-
     var soundAmbient = new Howl({
         src: currAmbient,
         volume: volumes.ambient,
         html5: true
     });
-
-// useEffect(() => {
-//     console.log('curr amb', currAmbient)
-//     var soundAmbient = new Howl({
-//         src: currAmbient,
-//         volume: volumes.ambient,
-//         html5: true
-//     });
-// }, [currAmbient])
 
 
     var soundPop = new Howl({
@@ -79,20 +69,13 @@ export default function AppFooter({ timer, setTimer, setIsPlaying, isPlaying }) 
         Howler.stop()
         setMute((prev) => !prev)
     }
-    // console.log(AmbientRain)
+
     return (
         <div className='app-footer'>
             {openSettings && 
             <AudioSettings 
             audios={audios} />}
-            {/* <div className='app-footer-1 fl-row' >
-                <i id={mute ? "btn-vol-off" : "btn-vol-up"} onClick={muteAudio}>
-                    {mute ? <VolumeOffIcon /> : <VolumeUpIcon/>}
-                </i>
-                <i id="btn-vol-up" onClick={(e) => setOpenSettings(a => !a)}>
-                    <AdjustmentsIcon />
-                </i>
-            </div> */}
+      
             <div className='app-footer-2'>
                 <MediaPlayer
                     setIsPlaying={setIsPlaying} isPlaying={isPlaying}
@@ -107,27 +90,4 @@ export default function AppFooter({ timer, setTimer, setIsPlaying, isPlaying }) 
             </div>
         </div>
     )
-    
-        // function playTrack(mp3, vol, stop) {
-    
-        //     var sound = new Howl({
-        //         src: mp3,
-        //         volume: vol,
-        //     });
-    
-        //     stop ? sound.stop() : sound.play()
-        // }
-    
-        // let ambient = volumes.ambient
-        // const [playGong, { stop }] = useSound(gong, { volume: volumes.startGong });
-        // const [playPop] = useSound(pop, { volume: volumes.endGong });
-        // const [playAmbient, { stopAmbient }] = useSound(currAmbient, {
-        //     volume: ambient,
-        //     loop: true,
-        //     interrupt: false
-        // });
-    
-        // useEffect(() => {
-        //     console.log(volumes)
-        // }, [volumes])
 }

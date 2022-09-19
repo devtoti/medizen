@@ -12,9 +12,9 @@ export default function AppHeader() {
 
   const [openDialog, setOpenDialog] = useState(false);
   function handleClick() {
-    // console.log('wroking')
     setOpenDialog(true)
   }
+  
   return (
     <div className='app-header'>
       <div onClick={handleClick}>

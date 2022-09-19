@@ -35,17 +35,17 @@ export default function MediaPlayer(props) {
     Howler.stop()
     setMute((prev) => !prev)
 }
-  //corre al detonarse isPlaying
+
   useEffect(() => {
 
     const userTimer = parseFloat(customMinutes) * 60 + parseFloat(customSeconds)
 
-    // console.log(id1)
+ 
     if (customTime) {
       userTimer > 3600 ? setTimer(3600) : setTimer(userTimer)
     }
     if (isPlaying && timer > 0) {
-      // setOpenSettings(false)
+ 
 
       const currTimer = setInterval(() => {
         setCustomTime(false)
@@ -109,7 +109,6 @@ export default function MediaPlayer(props) {
   function handleChange(e) {
     let newTime = parseInt(e.target.value);
     if (isNaN(newTime)) {
-      // console.log('custom time')
       setOpenDialog(true)
 
     } else {
@@ -122,14 +121,12 @@ export default function MediaPlayer(props) {
     setCustomMinutes(e.target.value)
     console.log(customTime)
     setCustomTime(true)
-    // setCustomTime((prev) => prev + parseFloat(customMinutes))
   }
 
   function handleCustomSeconds(e) {
     setCustomSeconds(e.target.value)
     console.log(customTime)
     setCustomTime(true)
-    // setCustomTime((prev) => prev + parseFloat(customSeconds))
   }
 
 
@@ -166,7 +163,6 @@ export default function MediaPlayer(props) {
           </form>
         </div>
       </Dialog>
-      {/* onClick={() => setOpenDialog(false)} */}
 
       <div className="media-player-controls">
         <button
